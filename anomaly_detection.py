@@ -1,23 +1,21 @@
 import pandas as pd
 from sklearn.ensemble import IsolationForest
 
-# -------------------------------
-# 1. Load payroll data (Batch)
-# -------------------------------
+
+#  Load payroll data (Batch)
+
 df = pd.read_csv("payroll_data.csv")
 
-# -------------------------------
-# 2. Feature Engineering
-# -------------------------------
+#  Feature Engineering
+
 df["overtime_ratio"] = df["overtime_pay"] / df["base_salary"]
 df["salary_ratio"] = df["total_salary"] / df["base_salary"]
 
 features = df[["base_salary", "overtime_ratio", "salary_ratio"]]
 
-# -------------------------------
 # 3. Train Isolation Forest
 # (Unsupervised Learning)
-# -------------------------------
+
 model = IsolationForest(
     n_estimators=100,
     contamination=0.2,   # ~20% anomalies expected
@@ -26,9 +24,8 @@ model = IsolationForest(
 
 model.fit(features)
 
-# -------------------------------
-# 4. Detect anomalies (Batch)
-# -------------------------------
+#  Detect anomalies (Batch)
+
 df["anomaly_flag"] = model.predict(features)
 
 # -1 = anomaly, 1 = normal
@@ -44,9 +41,9 @@ print(anomalies[[
     "month"
 ]])
 
-# -------------------------------
-# 5. Real-time example
-# -------------------------------
+
+#  Real-time example
+
 new_entry = pd.DataFrame({
     "base_salary": [30000],
     "overtime_pay": [15000],
