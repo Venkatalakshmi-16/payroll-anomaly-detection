@@ -4,12 +4,10 @@ Anomaly Detection Engine
 1. The Problem Situation
 The aim of this project is the automatic identification of unusual payroll transactions like manipulated salaries and falsified overtime. With limited information on fraud available, the system will employ unsupervised learning techniques to find anomalies within the company's payroll database.
 
---------------------------------------------------
 
 2. Algorithm Selection
 This project used Isolation Forest for anomaly detection because it can be used on unlabelled data. Numerous payroll functions, including salaries and overtime, work effectively with it.
 
---------------------------------------------------
 
 3. Features Used
 The training of the model was carried out on the basis of the following criteria:
@@ -21,7 +19,7 @@ total_salary / base_salary
 
 The system identifies unusually high overtime payments as well as abnormal increases in salaries.
 
---------------------------------------------------
+
 
 4. Batch Pipeline
 The payroll data from a csv file is first loaded into the pipeline and then undergoes feature engineering. Following the data profiling and cleansing, an Isolation Forest model has been trained. Utilising this model, anomalies are detected and a report detailing these anomalies is generated. This report is subsequently reviewed by the HR department.
@@ -37,12 +35,10 @@ Each new payroll entry has to be checked in real time before it is approved. Aft
 Flow:
 New Payroll Entry → Feature Engineering → Trained Model → Flag / Allow
 
-The 1980s and 1990s
 
 6. Concept Drift Handling
 Changes in salary scales or employee benefits can lead to shifting payroll patterns. Periodically, the model is re-trained on the most recent data from payroll to prevent anomalies from being incorrectly detected due to changing trends.
 
---------------------------------------------------
 
 7. Evaluation Strategy (No Labels)
 In the absence of a labelled dataset, evaluation is performed by comparing the performance of the system with that of a model with the same architecture but which has been trained on a large database of text.
@@ -50,12 +46,10 @@ In the absence of a labelled dataset, evaluation is performed by comparing the p
 - Manual HR review of flagged payroll entries
 Employing repeat anomalies in the data associated with a single employee as significant indicators of potential fraud schemes.
 
---------------------------------------------------
 
 8. Deployment Plan
 Training of the model occurs using a review of historical payroll information. Following training, the model can be put to use through an application programming interface that facilitates immediate, real-time payroll validation.
 
---------------------------------------------------
 
 9. How to Run the Project
 
