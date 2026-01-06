@@ -1,70 +1,76 @@
 ZENVY – AI Powered Payroll
 Anomaly Detection Engine
 
-1. Problem Statement
-The objective of this project is to detect unusual payroll activities such as salary manipulation and fake overtime. Since labeled fraud data is not available, the system uses unsupervised learning to identify abnormal patterns in payroll records.
+1. The Problem Situation
+The aim of this project is the automatic identification of unusual payroll transactions like manipulated salaries and falsified overtime. With limited information on fraud available, the system will employ unsupervised learning techniques to find anomalies within the company's payroll database.
 
 --------------------------------------------------
 
 2. Algorithm Selection
-Isolation Forest is used in this project because it does not require labeled data and is well suited for anomaly detection. It is efficient and works effectively with numerical payroll features such as salary and overtime values.
+This project used Isolation Forest for anomaly detection because it can be used on unlabelled data. Numerous payroll functions, including salaries and overtime, work effectively with it.
 
 --------------------------------------------------
 
 3. Features Used
-The model is trained using the following features:
+The training of the model was carried out on the basis of the following criteria:
 - Base Salary
-- Overtime Ratio (overtime_pay / base_salary)
-- Salary Ratio (total_salary / base_salary)
+Time worked overtime as a percentage of total working hours (overtime hours / total hours worked)
+This job uses the following salary ratio to compare the total salaries of the employees to the base salary. 
 
-These features help in identifying abnormal salary increases and unusually high overtime payments.
+total_salary / base_salary
+
+The system identifies unusually high overtime payments as well as abnormal increases in salaries.
 
 --------------------------------------------------
 
 4. Batch Pipeline
-In the batch pipeline, payroll data is loaded from a CSV file and processed using feature engineering. The trained Isolation Forest model is then applied to detect anomalies, and the results are generated as an anomaly report for HR review.
+The payroll data from a csv file is first loaded into the pipeline and then undergoes feature engineering. Following the data profiling and cleansing, an Isolation Forest model has been trained. Utilising this model, anomalies are detected and a report detailing these anomalies is generated. This report is subsequently reviewed by the HR department.
 
+Flow:
+Payroll CSV → Feature Engineering → Isolation Forest → Anomaly Report
 
 --------------------------------------------------
 
 5. Real-time Pipeline
-For real-time processing, each new payroll entry is checked before approval. The entry goes through the same feature engineering steps and is evaluated by the trained model to decide whether it is normal or suspicious.
+Each new payroll entry has to be checked in real time before it is approved. After undergoing feature engineering, the new entry is passed through the same neural network for evaluation. The model classifies the transaction as either legitimate or suspicious.
 
+Flow:
+New Payroll Entry → Feature Engineering → Trained Model → Flag / Allow
 
---------------------------------------------------
+The 1980s and 1990s
 
 6. Concept Drift Handling
-Payroll patterns can change over time due to salary hikes or policy changes. To handle this, the model is retrained periodically using recent payroll data so that it adapts to new trends and avoids incorrect anomaly detection.
+Changes in salary scales or employee benefits can lead to shifting payroll patterns. Periodically, the model is re-trained on the most recent data from payroll to prevent anomalies from being incorrectly detected due to changing trends.
 
 --------------------------------------------------
 
 7. Evaluation Strategy (No Labels)
-Since labeled data is not available, evaluation is done by:
+In the absence of a labelled dataset, evaluation is performed by comparing the performance of the system with that of a model with the same architecture but which has been trained on a large database of text.
 - Monitoring the percentage of records flagged as anomalies
 - Manual HR review of flagged payroll entries
-- Identifying repeated anomalies for the same employee as strong indicators of fraud
+Employing repeat anomalies in the data associated with a single employee as significant indicators of potential fraud schemes.
 
 --------------------------------------------------
 
 8. Deployment Plan
-The model is trained offline using historical payroll data. After training, it can be deployed as an API to support real-time payroll validation during salary processing.
+Training of the model occurs using a review of historical payroll information. Following training, the model can be put to use through an application programming interface that facilitates immediate, real-time payroll validation.
 
 --------------------------------------------------
 
 9. How to Run the Project
 
 Step 1: Install required libraries
-Open terminal in the project folder and run:
+In your terminal navigate to the project's directory and then run:
 pip install pandas scikit-learn
 
-Step 2: Run the anomaly detection script
-Make sure payroll_data.csv and anomaly_detection.py are in the same folder.
+The script was run manually. First, the expert ran the anomaly detection script to identify the transactions that needed to be looked at by the fraud detection software.
+Please ensure that both payroll_data.csv and anomaly_detection.py are located in the same working directory.
 Then run:
 python anomaly_detection.py
 
 Step 3: View results
-- Detected payroll anomalies will be printed in the terminal
-- A real-time payroll check result will also be displayed
+Payroll discrepancies will be displayed on the screen.
+The current real time status of payroll checks will be displayed.
 
 
 
