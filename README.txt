@@ -27,7 +27,7 @@ The payroll data from a csv file is first loaded into the pipeline and then unde
 Flow:
 Payroll CSV → Feature Engineering → Isolation Forest → Anomaly Report
 
---------------------------------------------------
+
 
 5. Real-time Pipeline
 Each new payroll entry has to be checked in real time before it is approved. After undergoing feature engineering, the new entry is passed through the same neural network for evaluation. The model classifies the transaction as either legitimate or suspicious.
